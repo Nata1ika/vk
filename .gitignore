@@ -3,3 +3,5 @@ vk_unity3d/Temp/
 vk_unity3d/.vs/
 vk_unity3d/vk_unity3d.sln
 vk_unity3d/vk_unity3d.csproj
+build/
+vk_unity3d/vk_unity3d.Editor.csproj

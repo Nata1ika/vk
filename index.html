@@ -31,36 +31,32 @@
 
 
 
-	<!--  После загрузки страницы для инициализации приложения необходимо вызвать функцию VK.init   -->
-	<script type="text/javascript"> 
-	  VK.init(function() { 
-		 // API initialization succeeded 
-		 // Your code here 
-	  }, function() { 
-		 // API initialization failed 
-		 // Can reload page here 
-	}, '5.92'); 
-	</script>
-
-
-
-	<!-- Вызов функций контента веб-плеера Unity с веб-страницы -->
+	<!--  После загрузки страницы для инициализации приложения необходимо вызвать функцию VK.init   -->	
 	<script type="text/javascript" language="javascript">
-	var u = new UnityObject2();
-	u.initPlugin(jQuery("#unityPlayer")[0], "Example.unity3d");
-	function SaySomethingToUnity()
+	function SayHello(arg)
 	{
-		u.getUnity().SendMessage("MyObject", "MyFunction", "Hello from a web page!");
+      VK.init(function()
+      { 
+	    ToUnity( "ok" );
+
+		VK.api("wall.post", {"message": arg, "v":"5.73", "attachments": "photo-27532693_456396010, https://iz.ru/"},
+			//function (data)
+			//{
+			//  alert("Post ID:" + data.response.post_id);
+			//}
+		);
+
+	  },
+	  function()
+	  { 
+		ToUnity( "fail" );
+	  }, '5.92'); 		
 	}
-	</script>
 
-
-	<!-- Вызов функций веб-страницы из веб-плеера Unity -->
-	<script type="text/javascript" language="javascript">
-	function SayHello( arg )
+	//Вызов функций веб-страницы из веб-плеера Unity
+	function ToUnity(arg)
 	{
-		// show the message
-		alert( arg );
+		gameInstance.Module.SendMessage("MyObject", "MyFunction", arg);
 	}
 	</script>
 
